@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fdf0d5">
+
+    <!-- Botón para retroceder -->
+    <ImageButton
+        android:id="@+id/btn_back"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_back_arrow"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Retroceder"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp" />
+
+    <!-- Título principal -->
+    <TextView
+        android:id="@+id/tv_add_user_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Agregar usuario"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:textColor="#003049"
+        app:layout_constraintTop_toBottomOf="@+id/btn_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="24dp" />
+
+    <!-- Campo de Nombre -->
+    <EditText
+        android:id="@+id/et_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Nombre"
+        android:inputType="textPersonName"
+        android:padding="12dp"
+        android:background="@drawable/edit_text_background_register"
+        app:layout_constraintTop_toBottomOf="@+id/tv_add_user_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="16dp" />
+
+    <!-- Campo de Apellido -->
+    <EditText
+        android:id="@+id/et_last_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Apellido"
+        android:inputType="textPersonName"
+        android:padding="12dp"
+        android:background="@drawable/edit_text_background_register"
+        app:layout_constraintTop_toBottomOf="@+id/et_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="16dp" />
+
+    <!-- Campo de Edad -->
+    <EditText
+        android:id="@+id/et_age"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Edad"
+        android:inputType="number"
+        android:padding="12dp"
+        android:background="@drawable/edit_text_background_register"
+        app:layout_constraintTop_toBottomOf="@+id/et_last_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="16dp" />
+
+    <!-- Campo de Vigencia -->
+    <EditText
+        android:id="@+id/et_validity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Vigencia"
+        android:inputType="date"
+        android:padding="12dp"
+        android:background="@drawable/edit_text_background_register"
+        app:layout_constraintTop_toBottomOf="@+id/et_age"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="16dp" />
+
+    <!-- Botón de Nueva Huella -->
+    <Button
+        android:id="@+id/btn_new_fingerprint"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Nueva huella"
+        android:textSize="16sp"
+        android:backgroundTint="#669bbc"
+        android:textColor="#FFF"
+        app:layout_constraintTop_toBottomOf="@+id/et_validity"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="24dp"
+        android:layout_marginHorizontal="16dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "334680536655",
+    "project_id": "mygymspace4-1",
+    "storage_bucket": "mygymspace4-1.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:334680536655:android:d5b09940290b4f15591c3a",
+        "android_client_info": {
+          "package_name": "com.example.mygymspace"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9X1Xlqi6wvIqvyE-fLfCb6Hn41jgrEng"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

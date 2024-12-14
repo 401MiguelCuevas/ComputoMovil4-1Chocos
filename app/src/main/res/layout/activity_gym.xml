@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fdf0d5">
+
+    <!-- Botón para retroceder -->
+    <ImageButton
+        android:id="@+id/btn_back"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_back_arrow"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Retroceder"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp" />
+
+    <!-- Botón para borrar -->
+    <ImageButton
+        android:id="@+id/btn_delete"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_delete"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Borrar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp" />
+
+    <!-- Título dinámico (Nombre del gimnasio) -->
+    <TextView
+        android:id="@+id/tv_gym_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre del Gimnasio"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:textColor="#780000"
+        app:layout_constraintTop_toBottomOf="@+id/btn_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="32dp" />
+
+    <!-- Botón para iniciar huella -->
+    <Button
+        android:id="@+id/btn_start_fingerprint"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Iniciar huella"
+        android:textSize="16sp"
+        android:backgroundTint="#c1121f"
+        android:textColor="#FFF"
+        app:layout_constraintTop_toBottomOf="@+id/tv_gym_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="24dp"
+        android:layout_marginHorizontal="16dp" />
+
+    <!-- Botón para editar usuario -->
+    <Button
+        android:id="@+id/btn_edit_user"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Editar usuario"
+        android:textSize="16sp"
+        android:backgroundTint="#c1121f"
+        android:textColor="#FFF"
+        app:layout_constraintTop_toBottomOf="@+id/btn_start_fingerprint"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="16dp" />
+
+    <!-- Botón para agregar usuario -->
+    <Button
+        android:id="@+id/btn_add_user"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Agregar usuario"
+        android:textSize="16sp"
+        android:backgroundTint="#669bbc"
+        android:textColor="#FFF"
+        app:layout_constraintTop_toBottomOf="@+id/btn_edit_user"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="16dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

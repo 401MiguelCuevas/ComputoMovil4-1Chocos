@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fdf0d5">
+
+    <!-- Botón para retroceder -->
+    <ImageButton
+        android:id="@+id/btn_back"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_back_arrow"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Retroceder"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp" />
+
+    <!-- Texto pequeño -->
+    <TextView
+        android:id="@+id/tv_instruction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Coloca el dedo en el sensor de huellas"
+        android:textSize="16sp"
+        android:textColor="#000"
+        app:layout_constraintTop_toBottomOf="@+id/btn_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="32dp" />
+
+    <!-- Cuadro que simula el lector de huellas -->
+    <FrameLayout
+        android:id="@+id/fingerprint_sensor_area"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:background="@drawable/fingerprint_reader"
+        app:layout_constraintTop_toBottomOf="@+id/tv_instruction"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btn_add_new_user"
+        android:layout_marginTop="32dp" />
+
+    <!-- Botón de agregar nuevo usuario -->
+    <Button
+        android:id="@+id/btn_add_new_user"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Agregar nuevo usuario"
+        android:textSize="16sp"
+        android:backgroundTint="#2196F3"
+        android:textColor="#FFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="32dp"
+        android:layout_marginHorizontal="16dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
