@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cl_main_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fdf0d5">
@@ -19,44 +20,48 @@
         android:layout_marginTop="16dp"
         android:layout_marginStart="16dp" />
 
-    <!-- Texto pequeño -->
+    <!-- Título -->
     <TextView
-        android:id="@+id/tv_instruction"
+        android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Coloca el dedo en el sensor de huellas"
-        android:textSize="16sp"
-        android:textColor="#000"
+        android:text="Validar palabra clave"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:textColor="#003049"
         app:layout_constraintTop_toBottomOf="@+id/btn_back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="32dp" />
+        android:layout_marginTop="24dp" />
 
-    <!-- Cuadro que simula el lector de huellas -->
-    <FrameLayout
-        android:id="@+id/fingerprint_sensor_area"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:background="@drawable/fingerprint_reader"
-        app:layout_constraintTop_toBottomOf="@+id/tv_instruction"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/btn_add_new_user"
-        android:layout_marginTop="32dp" />
-
-    <!-- Botón de agregar nuevo usuario -->
-    <Button
-        android:id="@+id/btn_add_new_user"
+    <!-- Campo de texto para ingresar la palabra clave -->
+    <EditText
+        android:id="@+id/et_keyword"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Agregar nuevo usuario"
-        android:textSize="16sp"
-        android:backgroundTint="#2196F3"
-        android:textColor="#FFF"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:hint="Introduce la palabra clave"
+        android:inputType="textPassword"
+        android:padding="12dp"
+        android:background="@drawable/edit_text_background_register"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="32dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginHorizontal="16dp" />
+
+    <!-- Botón para validar la palabra clave -->
+    <Button
+        android:id="@+id/btn_validate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Validar"
+        android:textSize="16sp"
+        android:backgroundTint="#669bbc"
+        android:textColor="#FFF"
+        app:layout_constraintTop_toBottomOf="@+id/et_keyword"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="32dp"
         android:layout_marginHorizontal="16dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -62,7 +62,7 @@ public class RegisterActivity extends AppCompatActivity {
         new Thread(() -> {
             try {
                 // Aquí colocamos la URL que conecta a tu servidor local
-                URL url = new URL("http://192.168.1.69/register.php"); // URL de tu API PHP
+                URL url = new URL("http://192.168.157.97/register.php"); // URL de tu API PHP
 
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("POST");

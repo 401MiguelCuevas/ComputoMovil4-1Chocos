@@ -53,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
         new Thread(() -> {
             try {
                 // Aquí colocamos la URL que conecta a tu servidor local
-                URL url = new URL("http://192.168.1.69/login.php"); // Cambia la IP por tu servidor
+                URL url = new URL("http://192.168.157.97/login.php"); // Cambia la IP por tu servidor
 
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("POST");
@@ -86,8 +86,8 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show();
 
                             // Aquí puedes redirigir al usuario a otra actividad si el inicio de sesión es exitoso
-                            Intent iniciointent = new Intent(LoginActivity.this, InicioActivity.class);
-                            startActivity(iniciointent);
+                            Intent intent = new Intent(LoginActivity.this, GymActivity.class);
+                            startActivity(intent);
                             finish();
                         } else {
                             Toast.makeText(this, "Credenciales incorrectas", Toast.LENGTH_SHORT).show();

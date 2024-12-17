@@ -25,19 +25,19 @@
             </intent-filter>
         </activity>
 
-        <!-- Actividad de Login -->
         <activity android:name=".LoginActivity" />
 
-        <!-- Actividad de Register -->
         <activity android:name=".RegisterActivity" />
 
-        <activity android:name=".InicioActivity" />
+        <activity android:name=".GymActivity" />
 
-        <activity android:name=".GymAdapter" />
+        <activity android:name=".EditarUsuariosActivity" />
 
-        <activity android:name=".AgregarGymActivity" />
+        <activity android:name=".AgregarUsuarioActivity" />
 
+        <activity android:name=".EditarUsuarioActivity" />
 
+        <activity android:name=".PalabraClaveActivity" />
 
     </application>
 
