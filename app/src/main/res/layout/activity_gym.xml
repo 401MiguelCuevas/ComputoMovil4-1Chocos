@@ -7,66 +7,100 @@
     android:layout_height="match_parent"
     android:background="#fdf0d5">
 
-
-
-    <!-- Título dinámico (Nombre del gimnasio) -->
-    <TextView
-        android:id="@+id/tv_gym_name"
-        android:layout_width="wrap_content"
+    <!-- Contenedor del encabezado -->
+    <LinearLayout
+        android:id="@+id/ll_header"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Bienvenido"
-        android:textColor="#780000"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/gradient_background_gym"
+        android:orientation="vertical"
+        android:padding="16dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteY="98dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-    <!-- Botón para palabra clave -->
-    <Button
-        android:id="@+id/btn_palabra_clave"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Palabra Clave"
-        android:textSize="16sp"
-        android:backgroundTint="#c1121f"
-        android:textColor="#FFF"
-        app:layout_constraintTop_toBottomOf="@+id/tv_gym_name"
+        <!-- Título dinámico -->
+        <TextView
+            android:id="@+id/tv_gym_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bienvenido"
+            android:textColor="#FFFFFF"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal" />
+
+        <!-- Subtítulo -->
+        <TextView
+            android:id="@+id/tv_gym_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Administra tu gimnasio de manera sencilla"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:layout_marginTop="8dp"
+            android:layout_gravity="center_horizontal" />
+    </LinearLayout>
+
+    <!-- Imagen decorativa -->
+    <ImageView
+        android:id="@+id/iv_gym_illustration"
+        android:layout_width="200dp"
+        android:layout_height="150dp"
+        android:src="@drawable/illustration_gym"
+        app:layout_constraintTop_toBottomOf="@+id/ll_header"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp"
-        android:layout_marginHorizontal="16dp" />
+        android:layout_marginTop="16dp" />
 
-    <!-- Botón para editar usuario -->
-    <Button
-        android:id="@+id/btn_edit_user"
+    <!-- Botones en un contenedor con separadores -->
+    <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Editar usuario"
-        android:textSize="16sp"
-        android:backgroundTint="#c1121f"
-        android:textColor="#FFF"
-        app:layout_constraintTop_toBottomOf="@+id/btn_palabra_clave"
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_constraintTop_toBottomOf="@id/iv_gym_illustration"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"
-        android:layout_marginHorizontal="16dp" />
+        android:layout_marginTop="16dp">
 
-    <!-- Botón para agregar usuario -->
-    <Button
-        android:id="@+id/btn_add_user"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Agregar usuario"
-        android:textSize="16sp"
-        android:backgroundTint="#669bbc"
-        android:textColor="#FFF"
-        app:layout_constraintTop_toBottomOf="@+id/btn_edit_user"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"
-        android:layout_marginHorizontal="16dp" />
+        <!-- Botón para palabra clave -->
+        <Button
+            android:id="@+id/btn_palabra_clave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Palabra Clave"
+            android:textSize="16sp"
+            android:backgroundTint="#c1121f"
+            android:textColor="#FFF"
+            android:drawableLeft="@drawable/ic_key"
+            android:drawablePadding="8dp"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Botón para editar usuario -->
+        <Button
+            android:id="@+id/btn_edit_user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Editar usuario"
+            android:textSize="16sp"
+            android:backgroundTint="#c1121f"
+            android:textColor="#FFF"
+            android:drawableLeft="@drawable/ic_edit"
+            android:drawablePadding="8dp"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Botón para agregar usuario -->
+        <Button
+            android:id="@+id/btn_add_user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Agregar usuario"
+            android:textSize="16sp"
+            android:backgroundTint="#669bbc"
+            android:textColor="#FFF"
+            android:drawableLeft="@drawable/ic_add"
+            android:drawablePadding="8dp" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
