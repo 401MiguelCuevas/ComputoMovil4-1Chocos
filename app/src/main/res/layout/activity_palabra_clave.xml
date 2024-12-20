@@ -43,6 +43,7 @@
         android:inputType="textPassword"
         android:padding="12dp"
         android:background="@drawable/edit_text_background_register"
+        android:textColor="@color/black"
         app:layout_constraintTop_toBottomOf="@+id/tv_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

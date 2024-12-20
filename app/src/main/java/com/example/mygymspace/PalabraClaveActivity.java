@@ -58,7 +58,7 @@ public class PalabraClaveActivity extends AppCompatActivity {
         }
 
         // URL del archivo PHP
-        String url = "http://192.168.157.97/consultar_vigencia.php?palabra_clave=" + palabraClave;
+        String url = "http://192.168.1.69/consultar_vigencia.php?palabra_clave=" + palabraClave;
 
         // Realizar petición al servidor
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,

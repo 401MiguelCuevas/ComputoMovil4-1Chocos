@@ -8,11 +8,10 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.mygymspace.R;
-
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.regex.Pattern;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -23,7 +22,7 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);  // El nombre de tu layout
+        setContentView(R.layout.activity_register);
 
         // Inicialización de vistas
         etName = findViewById(R.id.et_name);
@@ -34,7 +33,7 @@ public class RegisterActivity extends AppCompatActivity {
         btnBack = findViewById(R.id.btn_back);
 
         // Acción del botón de retroceder
-        btnBack.setOnClickListener(v -> finish());  // Cierra la actividad actual
+        btnBack.setOnClickListener(v -> finish());
 
         // Acción del botón de registrarse
         btnRegister.setOnClickListener(v -> registerUser());
@@ -52,6 +51,12 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
+        // Validar formato del correo electrónico
+        if (!isValidEmail(email)) {
+            Toast.makeText(this, "Por favor, ingresa un correo válido", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         // Validar que las contraseñas coincidan
         if (!password.equals(confirmPassword)) {
             Toast.makeText(this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
@@ -61,9 +66,7 @@ public class RegisterActivity extends AppCompatActivity {
         // Crear un hilo para la solicitud HTTP
         new Thread(() -> {
             try {
-                // Aquí colocamos la URL que conecta a tu servidor local
-                URL url = new URL("http://192.168.157.97/register.php"); // URL de tu API PHP
-
+                URL url = new URL("http://192.168.1.69/register.php"); // URL de tu API PHP
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("POST");
                 connection.setDoOutput(true);
@@ -75,13 +78,11 @@ public class RegisterActivity extends AppCompatActivity {
 
                 connection.getOutputStream().write(postData.getBytes("UTF-8"));
 
-                // Obtener la respuesta
                 int responseCode = connection.getResponseCode();
                 if (responseCode == HttpURLConnection.HTTP_OK) {
-                    // Aquí puedes manejar la respuesta del servidor, por ejemplo, mostrar un mensaje
                     runOnUiThread(() -> {
                         Toast.makeText(this, "Usuario registrado con éxito", Toast.LENGTH_SHORT).show();
-                        finish();  // Cerrar la actividad y regresar
+                        finish();
                     });
                 } else {
                     runOnUiThread(() -> Toast.makeText(this, "Error al registrar el usuario", Toast.LENGTH_SHORT).show());
@@ -91,5 +92,11 @@ public class RegisterActivity extends AppCompatActivity {
                 runOnUiThread(() -> Toast.makeText(this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show());
             }
         }).start();
+    }
+
+    private boolean isValidEmail(String email) {
+        // Expresión regular básica para validar el correo
+        Pattern emailPattern = Pattern.compile("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
+        return emailPattern.matcher(email).matches();
     }
 }

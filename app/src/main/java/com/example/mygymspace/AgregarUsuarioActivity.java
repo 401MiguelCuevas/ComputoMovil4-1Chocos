@@ -24,7 +24,7 @@ public class AgregarUsuarioActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agregar_usuario);
 
-        // Vinculación de vistas
+        //INICIALIZAR BOTONES
         etName = findViewById(R.id.et_name);
         etLastName = findViewById(R.id.et_last_name);
         etAge = findViewById(R.id.et_age);
@@ -32,7 +32,7 @@ public class AgregarUsuarioActivity extends AppCompatActivity {
         etPasswordKey = findViewById(R.id.et_password_key);
         btnSave = findViewById(R.id.btn_save);
 
-        // Acción del botón
+        //ACCION DE BOTON
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,32 +54,85 @@ public class AgregarUsuarioActivity extends AppCompatActivity {
             return;
         }
 
+        // VALIDAR VIGENCIA
+        if (!isValidDate(validity)) {
+            Toast.makeText(this, "La fecha de vigencia es inválida. Por favor, ingresa una fecha correcta.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // ENVIAR DATOS
         enviarDatosAlServidor(name, lastName, age, validity, passwordKey);
+    }
+
+    private boolean isValidDate(String date) {
+        // VERIFICAR QUE LA FECHA ESTE EN EL FORMATO: YYYY-MM-DD
+        String regex = "^\\d{4}-\\d{2}-\\d{2}$";
+        if (!date.matches(regex)) {
+            return false;
+        }
+
+        // VERIFICAR SI LA FECHA ES REAL
+        try {
+            String[] parts = date.split("-");
+            int year = Integer.parseInt(parts[0]);
+            int month = Integer.parseInt(parts[1]);
+            int day = Integer.parseInt(parts[2]);
+
+            // VERIFICAR RANGO DE MES
+            if (month < 1 || month > 12) {
+                return false;
+            }
+
+            // VALIDAR LOS DIAS DEL MES (CONSIDERANDO AÑOS BISIESTOS)
+            if (day < 1 || day > getDaysInMonth(month, year)) {
+                return false;
+            }
+
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    private int getDaysInMonth(int month, int year) {
+        switch (month) {
+            case 1: case 3: case 5: case 7: case 8: case 10: case 12:
+                return 31;
+            case 4: case 6: case 9: case 11:
+                return 30;
+            case 2:
+                // VALIDAR SI ES AÑO BISIESTO
+                if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
+                    return 29;
+                } else {
+                    return 28;
+                }
+            default:
+                return 0;
+        }
     }
 
     private void enviarDatosAlServidor(String nombre, String apellido, String edad, String vigencia, String palabraClave) {
         new Thread(() -> {
             try {
-                // URL del servidor
-                URL url = new URL("http://192.168.157.97/agregarusuario.php");
+                // URL Y CONEXION
+                URL url = new URL("http://192.168.1.69/agregarusuario.php");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
-                // Configuración de la conexión
                 conn.setRequestMethod("POST");
                 conn.setDoOutput(true);
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
 
-                // Datos a enviar (en español)
+                // DATOS A ENVIAR
                 String postData = "nombre=" + nombre + "&apellido=" + apellido + "&edad=" + edad
                         + "&vigencia=" + vigencia + "&palabra_clave=" + palabraClave;
 
-                // Enviar datos
+                // ENVIAR DATOS
                 OutputStreamWriter writer = new OutputStreamWriter(conn.getOutputStream());
                 writer.write(postData);
                 writer.flush();
                 writer.close();
 
-                // Leer respuesta del servidor
+                // RESPUESTA DEL SERVIDOR
                 int responseCode = conn.getResponseCode();
                 if (responseCode == HttpURLConnection.HTTP_OK) {
                     java.io.BufferedReader reader = new java.io.BufferedReader(
@@ -92,7 +145,7 @@ public class AgregarUsuarioActivity extends AppCompatActivity {
                     }
                     reader.close();
 
-                    // Procesar respuesta JSON
+                    // PROCESAR JSON
                     org.json.JSONObject jsonResponse = new org.json.JSONObject(response.toString());
                     String status = jsonResponse.getString("status");
                     String message = jsonResponse.getString("message");
@@ -100,7 +153,7 @@ public class AgregarUsuarioActivity extends AppCompatActivity {
                     runOnUiThread(() -> {
                         if ("success".equals(status)) {
                             Toast.makeText(this, "Usuario guardado exitosamente", Toast.LENGTH_SHORT).show();
-                            finish(); // Opcional: cerrar la actividad tras guardar
+                            finish(); // CERRAR AL GUARDAR
                         } else {
                             Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
                         }

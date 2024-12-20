@@ -71,7 +71,7 @@ public class EditarUsuarioActivity extends AppCompatActivity {
     }
 
     private void loadUserData() {
-        String url = "http://192.168.157.97/obtener_usuario.php?userId=" + userId;
+        String url = "http://192.168.1.69/obtener_usuario.php?userId=" + userId;
 
         StringRequest request = new StringRequest(Request.Method.GET, url,
                 response -> {
@@ -107,7 +107,13 @@ public class EditarUsuarioActivity extends AppCompatActivity {
             return;
         }
 
-        String url = "http://192.168.157.97/actualizar_usuario.php";
+        // Validar la fecha de vigencia antes de enviarla
+        if (!isValidDate(validity)) {
+            Toast.makeText(this, "La fecha de vigencia es inválida. Por favor, ingresa una fecha correcta.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        String url = "http://192.168.1.69/actualizar_usuario.php";
 
         StringRequest request = new StringRequest(Request.Method.POST, url,
                 response -> {
@@ -145,7 +151,7 @@ public class EditarUsuarioActivity extends AppCompatActivity {
     }
 
     private void deleteUser() {
-        String url = "http://192.168.157.97/eliminar_usuario.php";
+        String url = "http://192.168.1.69/eliminar_usuario.php";
 
         StringRequest request = new StringRequest(Request.Method.POST, url,
                 response -> {
@@ -176,5 +182,54 @@ public class EditarUsuarioActivity extends AppCompatActivity {
         };
 
         requestQueue.add(request);
+    }
+
+    // Validación de la fecha (al igual que en la actividad anterior)
+    private boolean isValidDate(String date) {
+        // Verificar que la fecha esté en formato YYYY-MM-DD
+        String regex = "^\\d{4}-\\d{2}-\\d{2}$";
+        if (!date.matches(regex)) {
+            return false;
+        }
+
+        // Verificar si la fecha es válida usando DateTime (asegurándose de que sea una fecha real)
+        try {
+            String[] parts = date.split("-");
+            int year = Integer.parseInt(parts[0]);
+            int month = Integer.parseInt(parts[1]);
+            int day = Integer.parseInt(parts[2]);
+
+            // Verificar el rango del mes
+            if (month < 1 || month > 12) {
+                return false;
+            }
+
+            // Validar los días del mes con base en el mes y el año (considerando años bisiestos)
+            if (day < 1 || day > getDaysInMonth(month, year)) {
+                return false;
+            }
+
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    private int getDaysInMonth(int month, int year) {
+        switch (month) {
+            case 1: case 3: case 5: case 7: case 8: case 10: case 12:
+                return 31;
+            case 4: case 6: case 9: case 11:
+                return 30;
+            case 2:
+                // Verificar si el año es bisiesto
+                if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
+                    return 29;
+                } else {
+                    return 28;
+                }
+            default:
+                return 0;
+        }
     }
 }

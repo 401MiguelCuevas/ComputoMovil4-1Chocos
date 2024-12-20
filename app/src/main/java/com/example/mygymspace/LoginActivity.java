@@ -53,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
         new Thread(() -> {
             try {
                 // Aquí colocamos la URL que conecta a tu servidor local
-                URL url = new URL("http://192.168.157.97/login.php"); // Cambia la IP por tu servidor
+                URL url = new URL("http://192.168.1.69/login.php"); // Cambia la IP por tu servidor
 
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("POST");

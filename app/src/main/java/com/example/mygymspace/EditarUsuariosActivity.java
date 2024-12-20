@@ -40,7 +40,7 @@ public class EditarUsuariosActivity extends AppCompatActivity {
 
     private void fetchUsersFromDatabase() {
         // URL del archivo PHP (ajústala según tu configuración)
-        String url = "http://192.168.157.97/obtener_usuarios.php";
+        String url = "http://192.168.1.69/obtener_usuarios.php";
 
         // Mostrar un indicador de carga mientras se obtienen los datos (opcional)
         // Puedes usar un ProgressBar o similar
