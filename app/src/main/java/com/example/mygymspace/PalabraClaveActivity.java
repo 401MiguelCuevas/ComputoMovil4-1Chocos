@@ -25,7 +25,7 @@ public class PalabraClaveActivity extends AppCompatActivity {
 
     private EditText etPalabraClave;
     private Button btnValidar;
-    private ConstraintLayout layoutContainer; // Cambiado a ConstraintLayout
+    private ConstraintLayout layoutContainer;
     private RequestQueue requestQueue;
 
     @Override
@@ -33,19 +33,19 @@ public class PalabraClaveActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_palabra_clave);
 
-        // Inicializar vistas
+        // INICIALIZAR VISTAS
         ImageButton btnBack = findViewById(R.id.btn_back);
         etPalabraClave = findViewById(R.id.et_keyword);
         btnValidar = findViewById(R.id.btn_validate);
-        layoutContainer = findViewById(R.id.cl_main_container); // Ya coincide con el tipo ConstraintLayout
+        layoutContainer = findViewById(R.id.cl_main_container);
 
-        // Configurar botón de retroceso
+        // BOTON DE RETROCESO
         btnBack.setOnClickListener(v -> finish());
 
-        // Inicializar RequestQueue para Volley
+        // RequestQueue PARA VOLLEY
         requestQueue = Volley.newRequestQueue(this);
 
-        // Configurar botón de validar
+        // BOTON DE VALIDAR
         btnValidar.setOnClickListener(v -> validarVigencia());
     }
 
@@ -57,10 +57,10 @@ public class PalabraClaveActivity extends AppCompatActivity {
             return;
         }
 
-        // URL del archivo PHP
-        String url = "http://192.168.1.69/consultar_vigencia.php?palabra_clave=" + palabraClave;
+        // URL DEL PHP
+        String url = "http://192.168.1.77/consultar_vigencia.php?palabra_clave=" + palabraClave;
 
-        // Realizar petición al servidor
+        // PETICION AL SERVIDOR
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -70,7 +70,7 @@ public class PalabraClaveActivity extends AppCompatActivity {
                             if (success) {
                                 String estado = response.getString("estado");
 
-                                // Cambiar el fondo según el estado
+                                // CAMBIAR EL FONDO SEGUN EL ESTADO
                                 switch (estado) {
                                     case "rojo":
                                         layoutContainer.setBackgroundColor(Color.RED);
@@ -102,7 +102,7 @@ public class PalabraClaveActivity extends AppCompatActivity {
                     }
                 });
 
-        // Agregar la solicitud a la cola
+        // AGREGAR SOLICITUD A LA COLA
         requestQueue.add(request);
     }
 }

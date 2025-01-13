@@ -25,34 +25,31 @@ public class EditarUsuariosActivity extends AppCompatActivity {
         ImageButton btnBack = findViewById(R.id.btn_back);
         recyclerView = findViewById(R.id.rv_user_list);
 
-        // Configurar botón de retroceso
+        // BOTON DE RETROCESO
         btnBack.setOnClickListener(v -> finish());
 
-        // Configurar RecyclerView
+        // RECYCLER VIEW
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         userList = new ArrayList<>();
         userAdapter = new UserAdapter(userList, this::onUserClick);
         recyclerView.setAdapter(userAdapter);
 
-        // Cargar usuarios desde la base de datos (PHP)
+        // CARGAR USUARIOS DE LA BD
         fetchUsersFromDatabase();
     }
 
     private void fetchUsersFromDatabase() {
-        // URL del archivo PHP (ajústala según tu configuración)
-        String url = "http://192.168.1.69/obtener_usuarios.php";
+        // URL del archivo PHP
+        String url = "http://192.168.1.77/obtener_usuarios.php";
 
-        // Mostrar un indicador de carga mientras se obtienen los datos (opcional)
-        // Puedes usar un ProgressBar o similar
-
-        // Crear la solicitud
+        // CREAR SOLICITUD
         com.android.volley.RequestQueue requestQueue = com.android.volley.toolbox.Volley.newRequestQueue(this);
         com.android.volley.toolbox.StringRequest stringRequest = new com.android.volley.toolbox.StringRequest(
                 com.android.volley.Request.Method.GET,
                 url,
                 response -> {
                     try {
-                        // Parsear la respuesta JSON
+                        // PARSEAR RESPUESTAS JSON
                         org.json.JSONArray jsonArray = new org.json.JSONArray(response);
                         userList.clear(); // Limpiar la lista antes de agregar nuevos datos
                         for (int i = 0; i < jsonArray.length(); i++) {
@@ -72,7 +69,7 @@ public class EditarUsuariosActivity extends AppCompatActivity {
                     // Manejar errores de la solicitud (e.g., conexión fallida)
                 });
 
-        // Agregar la solicitud a la cola
+        // AGREGAR SOLICITUD A LA COLA
         requestQueue.add(stringRequest);
     }
 

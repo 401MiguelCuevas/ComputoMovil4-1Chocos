@@ -19,25 +19,25 @@ public class GymActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gym);
 
-        // Inicializar vistas
+        // INICIALIZAR VISTAS
         tvGymName = findViewById(R.id.tv_gym_name);
         btnPalabraClave = findViewById(R.id.btn_palabra_clave);
         btnEditUser = findViewById(R.id.btn_edit_user);
         btnAddUser = findViewById(R.id.btn_add_user);
 
-        // Configurar evento para el botón "palabra clave"
+        // CONFIGURAR EVENTO (PALABRA CLAVE)
         btnPalabraClave.setOnClickListener(v -> {
             Intent intent = new Intent(GymActivity.this, PalabraClaveActivity.class);
             startActivity(intent);
         });
 
-        // Configurar evento para el botón "Editar usuario"
+        // EVENTO BOTON EDITAR USUARIO
         btnEditUser.setOnClickListener(v -> {
             Intent intent = new Intent(GymActivity.this, EditarUsuariosActivity.class);
             startActivity(intent);
         });
 
-        // Configurar evento para el botón "Agregar usuario"
+        // EVENTO BOTON AGREGAR USUARIO
         btnAddUser.setOnClickListener(v -> {
             Intent intent = new Intent(GymActivity.this, AgregarUsuarioActivity.class);
             startActivity(intent);

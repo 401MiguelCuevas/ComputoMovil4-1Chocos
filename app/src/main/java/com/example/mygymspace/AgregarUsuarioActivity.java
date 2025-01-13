@@ -7,9 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.example.mygymspace.R;
-
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -116,7 +114,7 @@ public class AgregarUsuarioActivity extends AppCompatActivity {
         new Thread(() -> {
             try {
                 // URL Y CONEXION
-                URL url = new URL("http://192.168.1.69/agregarusuario.php");
+                URL url = new URL("http://192.168.1.77/agregarusuario.php");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestMethod("POST");
                 conn.setDoOutput(true);

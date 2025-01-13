@@ -26,16 +26,16 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        // Inicialización de vistas
+        // INICIALIZAR VISTAS
         etEmail = findViewById(R.id.et_email);
         etPassword = findViewById(R.id.et_password);
         btnLogin = findViewById(R.id.btn_login);
         btnBack = findViewById(R.id.btn_back);
 
-        // Acción del botón de retroceder
+        // BOTON RETROCEDER
         btnBack.setOnClickListener(v -> finish()); // Cierra la actividad actual
 
-        // Acción del botón de iniciar sesión
+        // BOTON INICIAR SESION
         btnLogin.setOnClickListener(v -> loginUser());
     }
 
@@ -43,23 +43,23 @@ public class LoginActivity extends AppCompatActivity {
         String email = etEmail.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
 
-        // Validación de campos
+        // VALIDAR CAMPOS
         if (email.isEmpty() || password.isEmpty()) {
             Toast.makeText(this, "Por favor, completa todos los campos", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Crear un hilo para la solicitud HTTP
+        // CREAR HILO PARA SOLICITUD HTTP
         new Thread(() -> {
             try {
-                // Aquí colocamos la URL que conecta a tu servidor local
-                URL url = new URL("http://192.168.1.69/login.php"); // Cambia la IP por tu servidor
+                // URL DEL SERVIDOR
+                URL url = new URL("http://192.168.1.77/login.php"); //
 
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("POST");
                 connection.setDoOutput(true);
 
-                // Escribir los parámetros de la solicitud
+                // PARAMETROS DE LA SOLICITUD
                 String postData = "email=" + URLEncoder.encode(email, "UTF-8") +
                         "&password=" + URLEncoder.encode(password, "UTF-8");
 
@@ -68,7 +68,7 @@ public class LoginActivity extends AppCompatActivity {
                 outputStream.flush();
                 outputStream.close();
 
-                // Obtener la respuesta del servidor
+                // OBTENER RESPUESTA DEL SERVIDOR
                 int responseCode = connection.getResponseCode();
                 if (responseCode == HttpURLConnection.HTTP_OK) {
                     BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
@@ -80,12 +80,12 @@ public class LoginActivity extends AppCompatActivity {
                     }
                     reader.close();
 
-                    // Manejar la respuesta del servidor
+                    // RESPUESTA DEL SERVIDOR
                     runOnUiThread(() -> {
                         if (response.toString().equals("success")) {
                             Toast.makeText(this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show();
 
-                            // Aquí puedes redirigir al usuario a otra actividad si el inicio de sesión es exitoso
+                            // REDIRIGIR AL USUARIO SI EL INICIO ES EXITOSO
                             Intent intent = new Intent(LoginActivity.this, GymActivity.class);
                             startActivity(intent);
                             finish();

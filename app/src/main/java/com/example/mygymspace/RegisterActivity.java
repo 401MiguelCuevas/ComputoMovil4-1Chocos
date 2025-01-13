@@ -45,19 +45,19 @@ public class RegisterActivity extends AppCompatActivity {
         String password = etPassword.getText().toString().trim();
         String confirmPassword = etConfirmPassword.getText().toString().trim();
 
-        // Validación de campos
+        // VALIDACION DE CAMPOS
         if (name.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
             Toast.makeText(this, "Por favor, completa todos los campos", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Validar formato del correo electrónico
+        // VALIDAR FORMATO DEL CORREO ELECTRONICO
         if (!isValidEmail(email)) {
             Toast.makeText(this, "Por favor, ingresa un correo válido", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Validar que las contraseñas coincidan
+        // VALIDAR QUE LAS CONTRASEÑAS COINCIDAN
         if (!password.equals(confirmPassword)) {
             Toast.makeText(this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
             return;
@@ -66,7 +66,7 @@ public class RegisterActivity extends AppCompatActivity {
         // Crear un hilo para la solicitud HTTP
         new Thread(() -> {
             try {
-                URL url = new URL("http://192.168.1.69/register.php"); // URL de tu API PHP
+                URL url = new URL("http://192.168.1.77/register.php"); // URL de tu API PHP
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("POST");
                 connection.setDoOutput(true);
@@ -95,7 +95,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private boolean isValidEmail(String email) {
-        // Expresión regular básica para validar el correo
+        // VALIDAR CORREO
         Pattern emailPattern = Pattern.compile("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
         return emailPattern.matcher(email).matches();
     }

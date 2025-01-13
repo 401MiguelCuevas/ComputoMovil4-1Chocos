@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    // Declaración de botones
+    // DECLARAR BOTONES
     private Button btnLogin;
     private Button btnRegister;
 
@@ -17,13 +17,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Inicialización de los botones
+        // INICIAR BOTONES
         btnLogin = findViewById(R.id.btn_login);
         btnRegister = findViewById(R.id.btn_register);
 
-        // Configuración de eventos de click
-
-        // Navegar a la pantalla de inicio de sesión
+        // NAVEGAR A LA PANTALLA DE INICIO DE SESION
         btnLogin.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -32,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Navegar a la pantalla de registro
+        // NAVEGAR A LA PANTALLA DE REGISTRO
         btnRegister.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
